@@ -1,0 +1,12 @@
+DROP DATABASE IF EXISTS *database*;
+
+CREATE DATABASE *database*;
+
+USE *database*;
+
+CREATE TABLE user(
+    id INT NOT NULL AUTO_INCREMENT,
+    login VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);

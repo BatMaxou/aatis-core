@@ -1,0 +1,14 @@
+{
+    "name": "aatis/core",
+    "type": "project",
+    "description": "The core of Aatis",
+    "authors": [
+        {
+            "name": "Maxime Batista",
+            "email": "maximebatista.lycee@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}

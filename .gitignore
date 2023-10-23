@@ -1,0 +1,5 @@
+### > Basics
+/vendor/
+.env.local
+docker-compose.override.yaml
+### < Basics
