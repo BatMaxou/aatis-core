@@ -8,7 +8,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - php_mvc
+      - aatis_core
 
   php:
     build:
@@ -16,7 +16,7 @@ services:
     volumes:
       - .:/srv
     networks:
-      - php_mvc
+      - aatis_core
 
   web:
     depends_on:
@@ -26,10 +26,10 @@ services:
     volumes:
       - ./public:/srv/public
     networks:
-      - php_mvc
+      - aatis_core
 
 networks:
-  php_mvc:
+  aatis_core:
     external: true
 
 volumes:

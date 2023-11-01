@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Service;
+
+use App\Controllers\HomeController;
+
 class Router
 {
     public static function redirect()
@@ -9,7 +13,7 @@ class Router
 
         if (isset($uri[1]) && !empty($uri[1])) {
             $controller = $uri[1];
-            $controllerFile = ROOT . '../src/controllers/' . ucfirst($controller) . 'Controller.php';
+            $controllerFile = dirname(__DIR__) . '/src/controllers/' . ucfirst($controller) . 'Controller.php';
 
             if (file_exists($controllerFile)) {
                 require_once($controllerFile);
@@ -24,20 +28,19 @@ class Router
                         $controller->view($action);
                     } else {
                         header('HTTP/1.0 404 Not Found');
-                        require_once('../views/errors/404.php');
+                        require_once(dirname(__DIR__) . '/views/errors/404.php');
                     }
                 } elseif (method_exists($controller::class, 'all')) {
                     $controller->all();
                 } else {
                     header('HTTP/1.0 404 Not Found');
-                    require_once('../views/errors/404.php');
+                    require_once(dirname(__DIR__) . '/views/errors/404.php');
                 }
             } else {
                 header('HTTP/1.0 404 Not Found');
-                require_once('../views/errors/404.php');
+                require_once(dirname(__DIR__) . '/views/errors/404.php');
             }
         } else {
-            require_once('../src/controllers/HomeController.php');
             (new HomeController())->home();
         }
     }
