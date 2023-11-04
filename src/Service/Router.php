@@ -6,7 +6,7 @@ use Aatis\Core\Controllers\HomeController;
 
 class Router
 {
-    public static function redirect()
+    public function redirect()
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
         $uri = parseExplodeUrl($uri);
