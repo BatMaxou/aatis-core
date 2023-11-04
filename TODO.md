@@ -1,8 +1,8 @@
 # TODO
 
-## Autoloader
+## Kernel
 
-- classic one
+- understand how to use it and how to initialise the containerBuilder before ?
 
 ## Dependencies Injection
 

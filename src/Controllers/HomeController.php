@@ -2,7 +2,9 @@
 
 namespace Aatis\Core\Controllers;
 
-class HomeController
+use App\Controllers\AbstractController;
+
+class HomeController extends AbstractController
 {
     public function home()
     {
