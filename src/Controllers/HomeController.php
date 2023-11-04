@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace Aatis\Core\Controllers;
 
 class HomeController
 {
