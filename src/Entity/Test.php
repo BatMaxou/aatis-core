@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Entity;
+namespace Aatis\Core\Entity;
+
 
 class Test
 {

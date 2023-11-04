@@ -1,22 +1,35 @@
 <?php
 
-namespace App\Service;
+namespace Aatis\Core\Service;
 
-use App\Entity\Service;
-use App\Entity\Container;
+use Aatis\Core\Entity\Service;
+use Aatis\Core\Entity\Container;
 
 class ContainerBuilder
 {
-    public static function build(): Container
+
+    /**
+     * @param array{
+     *  env: string,
+     *  debug: bool,
+     * } $ctx
+     */
+    public function __construct(
+        private readonly array $ctx,
+        private readonly string $sourcePath
+    ) {
+    }
+
+    public function build(): Container
     {
         $container = new Container();
-        $path = ROOT . '../src';
-        self::registerFolder($path, $container);
+        dd('ok');
+        $this->registerFolder($this->sourcePath, $container);
 
         return $container;
     }
 
-    private static function registerFolder(string $folderPath, Container $container): void
+    private function registerFolder(string $folderPath, Container $container): void
     {
         $folderContent = array_diff(scandir($folderPath), array('..', '.'));
 
@@ -24,22 +37,22 @@ class ContainerBuilder
             $path = $folderPath . '/' . $element;
 
             if (is_dir($path)) {
-                self::registerFolder($path, $container);
+                $this->registerFolder($path, $container);
 
                 continue;
             }
 
-            self::register($path, $container);
+            $this->register($path, $container);
         }
     }
 
-    private static function register(string $filePath, Container $container): void
+    private function register(string $filePath, Container $container): void
     {
         if (!str_ends_with($filePath, '.php')) {
             return;
         }
 
-        $namespace = self::transformToNamespace($filePath);
+        $namespace = $this->transformToNamespace($filePath);
 
         if (!class_exists($namespace)) {
             return;
@@ -62,7 +75,7 @@ class ContainerBuilder
         $container->set($namespace, $service->getInstance());
     }
 
-    private static function transformToNamespace(string $filePath): string
+    private function transformToNamespace(string $filePath): string
     {
         $temp = str_replace(ROOT . '../src', 'App', $filePath);
         $temp = str_replace(DIRECTORY_SEPARATOR, '\\', $temp);

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace Aatis\Core\Entity;
 
-use App\Entity\Container;
+use Aatis\Core\Entity\Container;
 
 class Service
 {

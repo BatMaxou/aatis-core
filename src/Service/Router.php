@@ -6,6 +6,10 @@ use Aatis\Core\Controllers\HomeController;
 
 class Router
 {
+    public function __construct(private readonly HomeController $homeController)
+    {
+    }
+
     public function redirect()
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
@@ -41,7 +45,7 @@ class Router
                 require_once(dirname(__DIR__) . '/views/errors/404.php');
             }
         } else {
-            (new HomeController())->home();
+            $this->homeController->home();
         }
     }
 }

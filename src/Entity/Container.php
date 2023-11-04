@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace Aatis\Core\Entity;
 
-use App\Entity\Service;
+use Aatis\Core\Entity\Service;
 
 class Container
 {
@@ -19,6 +19,11 @@ class Container
     public function get(string $class): object
     {
         return $this->services[$class];
+    }
+
+    public function has(string $class): bool
+    {
+        return isset($this->services[$class]);
     }
 
     public function set(string $class, object $service): void
