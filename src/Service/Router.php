@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Service;
+namespace Aatis\Core\Service;
 
-use App\Controllers\HomeController;
+use Aatis\Core\Controllers\HomeController;
 
 class Router
 {

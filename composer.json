@@ -8,6 +8,11 @@
             "email": "maximebatista.lycee@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Aatis\\Core\\": "src/"
+        }
+    },
     "require": {
         "vlucas/phpdotenv": "^5.5"
     }

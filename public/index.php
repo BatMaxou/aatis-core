@@ -1,9 +1,9 @@
 <?php
 
-use App\Service\Router;
+use Aatis\Core\Service\Router;
 
-require_once dirname(__DIR__).'/src/BaseFunctions.php';
-require_once dirname(__DIR__).'/src/Autoloader.php';
+require dirname(__DIR__) . '/src/BaseFunctions.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
 

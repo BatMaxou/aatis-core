@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace Aatis\Core\Service;
 
 class ViewLoader
 {
