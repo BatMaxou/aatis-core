@@ -1,21 +1,17 @@
 # TODO
 
-## Kernel
-
-- understand how to use it and how to initialise the containerBuilder before ?
-
 ## Dependencies Injection
 
-- see symfony && understand it
+- add a random parameter with yaml services file 
 
-## Basic function class
+## Exception
 
-- class with every basics functions in static
-- file with a function for every method of the class
-- autoload the file in index.php ?
+- create exceptions
 
-## Improve dumper
+## Psr4 Interface
 
-- handle object
-- improve display
-- find better colors
+- import
+
+## Routing
+
+- refacto: do a fully fonctionnal

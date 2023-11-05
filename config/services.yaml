@@ -1,0 +1,6 @@
+excludes:
+  - '/Kernel.php'
+  - '/Service/ContainerBuilder.php'
+  - '/Entity'
+
+services:

@@ -2,28 +2,22 @@
 
 namespace Aatis\Core\Entity;
 
-use Aatis\Core\Entity\Container;
-
 class Service
 {
     private ?object $instance = null;
-
-    private static ?Container $container = null;
-
     /**
-     * @param array<array{
+     * @var array<array{
      *   dependecy?: string,
      *   value?: mixed
      * } $args
      */
+    private array $args = [];
+    private static Container $container;
+
     public function __construct(
-        private string $name,
         private string $class,
-        private array $args = []
     ) {
-        $this->name = $name;
         $this->class = $class;
-        $this->args = $args;
     }
 
     public static function setContainer(Container $container): void
@@ -31,14 +25,52 @@ class Service
         self::$container = $container;
     }
 
+    /**
+     * @param array<array{
+     *   dependecy?: string,
+     *   value?: mixed
+     * } $args
+     */
+    public function setArgs(array $args): void
+    {
+        $this->args = $args;
+    }
+
+    public function setInstance(object $instance): void
+    {
+        $this->instance = $instance;
+    }
+
     public function instanciate(): void
     {
-        $this->instance = (new $this->class)(...$this->args);
-        self::$container->set($this->name, $this->instance);
+        $args = [];
+
+        foreach ($this->getDependencies() as $dependency) {
+            if (!self::$container->has($dependency)) {
+                if (class_exists($dependency)) {
+                    $service = new Service($dependency);
+                    self::$container->set($dependency, $service);
+                    $service->instanciate();
+                } else {
+                    throw new \Exception("Class $dependency not found");
+                }
+            }
+            $args[] = self::$container->get($dependency);
+        };
+
+        if (!empty($args)) {
+            $this->setArgs($args);
+        }
+
+        $this->instance = new ($this->class)(...$this->args);
     }
 
     public function getInstance(): object
     {
+        if (self::$container && $this->class === self::$container::class) {
+            return self::$container;
+        }
+
         if (!$this->instance) {
             $this->instanciate();
         }
@@ -54,12 +86,22 @@ class Service
         $dependencies = [];
         $reflexion = new \ReflectionClass($this->class);
         $constructor = $reflexion->getConstructor();
+
+        if (!$constructor) {
+            return $dependencies;
+        }
+
         $parameters = $constructor->getParameters();
 
         foreach ($parameters as $parameter) {
-            $type = $parameter->getType()->getName();
-            if (str_contains($type, '\\')) {
-                $dependencies[] = $type;
+            $type = $parameter->getType();
+
+            if (!$type || !($type instanceof \ReflectionNamedType)) {
+                continue;
+            }
+
+            if (str_contains($type->getName(), '\\')) {
+                $dependencies[] = $type->getName();
             }
         }
 
@@ -85,7 +127,6 @@ class Service
     public function toArray(): array
     {
         return [
-            'name' => $this->name,
             'class' => $this->class,
             'args' => $this->args,
         ];

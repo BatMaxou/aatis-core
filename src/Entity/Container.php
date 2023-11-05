@@ -7,7 +7,7 @@ use Aatis\Core\Entity\Service;
 class Container
 {
     /**
-     * @var array<string, object> $services
+     * @var array<string, Service> $services
      */
     private array $services = [];
 
@@ -18,7 +18,7 @@ class Container
 
     public function get(string $class): object
     {
-        return $this->services[$class];
+        return $this->services[$class]->getInstance();
     }
 
     public function has(string $class): bool

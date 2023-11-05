@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace Aatis\Core\Controllers;
 
-use App\Entity\Container;
+use Aatis\Core\Entity\Container;
 
 abstract class AbstractController
 {

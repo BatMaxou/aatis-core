@@ -14,9 +14,13 @@ class Kernel
             'debug' => true,
         ];
 
-        (new ContainerBuilder($ctx, ROOT . 'src'))->build();
-        // Container builder job
-        // get router by container
-        // $router->redirect();
+        $container = (new ContainerBuilder($ctx, ROOT . '../src'))->build();
+
+        /**
+         * @var Router $router
+         */
+        $router = $container->get('Aatis\Core\Service\Router');
+
+        $router->redirect();
     }
 }

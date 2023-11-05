@@ -13,7 +13,7 @@ class Router
     public function redirect()
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
-        $uri = parseExplodeUrl($uri);
+        $uri = $this->parseExplodeUrl($uri);
 
         if (isset($uri[1]) && !empty($uri[1])) {
             $controller = $uri[1];
@@ -47,5 +47,17 @@ class Router
         } else {
             $this->homeController->home();
         }
+    }
+
+    private function parseExplodeUrl(array $explode): array
+    {
+        return array_map(fn ($element) => $this->parseUrlElement($element), $explode);
+    }
+
+    private function parseUrlElement(string $element): string
+    {
+        $element = explode('-', $element);
+        $element = array_map('ucfirst', [...$element]);
+        return lcfirst(join('', $element));
     }
 }
