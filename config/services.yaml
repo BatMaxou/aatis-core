@@ -4,3 +4,7 @@ excludes:
   - '/Entity'
 
 services:
+  Aatis\Core\Service\Router:
+    arguments:
+      number: 2
+      ch: 'string'

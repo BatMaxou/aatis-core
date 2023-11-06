@@ -6,6 +6,10 @@ class Service
 {
     private ?object $instance = null;
     /**
+     * @var array<string, mixed> $givenArgs
+     */
+    private array $givenArgs = [];
+    /**
      * @var array<array{
      *   dependecy?: string,
      *   value?: mixed
@@ -23,6 +27,14 @@ class Service
     public static function setContainer(Container $container): void
     {
         self::$container = $container;
+    }
+
+    /**
+     * @param array<string, mixed> $givenArgs
+     */
+    public function setGivenArgs(array $givenArgs): void
+    {
+        $this->givenArgs = $givenArgs;
     }
 
     /**
@@ -45,23 +57,26 @@ class Service
     {
         $args = [];
 
-        foreach ($this->getDependencies() as $dependency) {
-            if (!self::$container->has($dependency)) {
-                if (class_exists($dependency)) {
-                    $service = new Service($dependency);
-                    self::$container->set($dependency, $service);
-                    $service->instanciate();
-                } else {
-                    throw new \Exception("Class $dependency not found");
+        foreach ($this->getDependencies() as $varName => $dependencyType) {
+            if (str_contains($dependencyType, '\\')) {
+                if (!self::$container->has($dependencyType)) {
+                    if (class_exists($dependencyType)) {
+                        $service = new Service($dependencyType);
+                        self::$container->set($dependencyType, $service);
+                        $service->instanciate();
+                    } else {
+                        throw new \Exception("Class $dependencyType not found");
+                    }
                 }
+                $args[] = self::$container->get($dependencyType);
+            } else {
+                $args[] = $this->givenArgs[$varName];
             }
-            $args[] = self::$container->get($dependency);
-        };
+        }
 
         if (!empty($args)) {
             $this->setArgs($args);
         }
-
         $this->instance = new ($this->class)(...$this->args);
     }
 
@@ -101,7 +116,9 @@ class Service
             }
 
             if (str_contains($type->getName(), '\\')) {
-                $dependencies[] = $type->getName();
+                $dependencies[$parameter->getName()] = $type->getName();
+            } else {
+                $dependencies[$parameter->getName()] = $type->getName();
             }
         }
 

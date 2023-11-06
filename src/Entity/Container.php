@@ -18,7 +18,7 @@ class Container
 
     public function get(string $class): object
     {
-        return $this->services[$class]->getInstance();
+        return $class === self::class ? $this : $this->services[$class]->getInstance();
     }
 
     public function has(string $class): bool

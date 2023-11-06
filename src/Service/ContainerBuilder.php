@@ -12,6 +12,11 @@ class ContainerBuilder
      * @var String[]
      */
     private array $excludePaths = [];
+    /**
+     * @var array<string, mixed>
+     */
+    private array $givenArgs = [];
+    private Container $container;
 
     /**
      * @param array{
@@ -28,13 +33,13 @@ class ContainerBuilder
 
     public function build(): Container
     {
-        $container = new Container();
-        $this->registerFolder($this->sourcePath, $container);
+        $this->container = new Container();
+        $this->registerFolder($this->sourcePath);
 
-        return $container;
+        return $this->container;
     }
 
-    private function registerFolder(string $folderPath, Container $container): void
+    private function registerFolder(string $folderPath): void
     {
         if (in_array($this->getShortPath($folderPath), $this->excludePaths)) {
             return;
@@ -46,16 +51,16 @@ class ContainerBuilder
             $path = $folderPath . '/' . $element;
 
             if (is_dir($path)) {
-                $this->registerFolder($path, $container);
+                $this->registerFolder($path);
 
                 continue;
             }
 
-            $this->register($path, $container);
+            $this->register($path);
         }
     }
 
-    private function register(string $filePath, Container $container): void
+    private function register(string $filePath): void
     {
         $shortPath = $this->getShortPath($filePath);
 
@@ -75,9 +80,11 @@ class ContainerBuilder
         ) {
             return;
         }
-
         $service = new Service($namespace);
-        $container->set($namespace, $service);
+        if (isset($this->givenArgs[$namespace]) && isset($this->givenArgs[$namespace]['arguments'])) {
+            $service->setGivenArgs($this->givenArgs[$namespace]['arguments']);
+        }
+        $this->container->set($namespace, $service);
     }
 
     private function getShortPath(string $path): string
@@ -98,9 +105,10 @@ class ContainerBuilder
 
     private function getConfig(): void
     {
-        if (file_exists(ROOT . '../config/service.yaml')) {
+        if (file_exists(ROOT . '../config/services.yaml')) {
             $config = Yaml::parseFile(ROOT . '../config/services.yaml');
-            $this->excludePaths = $config['excludes'];
+            $this->excludePaths = $config['excludes'] ?? [];
+            $this->givenArgs = $config['services'] ?? [];
         }
     }
 }
