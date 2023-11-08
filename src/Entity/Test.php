@@ -2,7 +2,6 @@
 
 namespace Aatis\Core\Entity;
 
-
 class Test
 {
     private string $name;

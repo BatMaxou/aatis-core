@@ -6,14 +6,31 @@ use Aatis\Core\Entity\Service;
 use Aatis\Core\Entity\Container;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * @phpstan-type YamlConfig array{
+ *  excludes?: array<int, string>,
+ *  services?: array<string, array{
+ *      arguments?: array<mixed>
+ *  }>
+ * }
+ * 
+ * @phpstan-type ComposerJsonConfig array{
+ *  autoload: array{
+ *     psr-4: array<string, string>
+ *  },
+ * }
+ */
 class ContainerBuilder
 {
     /**
-     * @var String[]
+     * @var array<int, string>
      */
     private array $excludePaths = [];
     /**
-     * @var array<string, mixed>
+     * @var array<string, array{
+     *      arguments?: array<mixed>
+     *  }>
+     * }
      */
     private array $givenArgs = [];
     private Container $container;
@@ -45,7 +62,7 @@ class ContainerBuilder
             return;
         }
 
-        $folderContent = array_diff(scandir($folderPath), array('..', '.'));
+        $folderContent = array_diff(scandir($folderPath) ?: [], ['..', '.']);
 
         foreach ($folderContent as $element) {
             $path = $folderPath . '/' . $element;
@@ -89,14 +106,16 @@ class ContainerBuilder
 
     private function getShortPath(string $path): string
     {
-        return str_replace(ROOT . '../src', '', $path);
+        return str_replace($_ENV['DOCUMENT_ROOT'] . '/../src', '', $path);
     }
 
-    private function transformToNamespace(string $filePath, $isVendor = false): string
+    private function transformToNamespace(string $filePath): string
     {
-        $autoloaderInfos = json_decode(file_get_contents(ROOT . '../composer.json'), true)['autoload']['psr-4'];
-        $baseNamespace = array_key_first(array_filter($autoloaderInfos, fn ($value) => $value === 'src/'));
-        $temp = str_replace(ROOT . '../src/', $baseNamespace, $filePath);
+        /** @var ComposerJsonConfig */
+        $composerJson = json_decode(file_get_contents($_ENV['DOCUMENT_ROOT'] . '/../composer.json') ?: '', true);
+        $autoloaderInfos = $composerJson['autoload']['psr-4'];
+        $baseNamespace = array_key_first(array_filter($autoloaderInfos, fn ($value) => 'src/' === $value));
+        $temp = str_replace($_ENV['DOCUMENT_ROOT'] . '/../src/', $baseNamespace ?? 'App\\', $filePath);
         $temp = str_replace(DIRECTORY_SEPARATOR, '\\', $temp);
         $temp = str_replace('.php', '', $temp);
 
@@ -105,8 +124,9 @@ class ContainerBuilder
 
     private function getConfig(): void
     {
-        if (file_exists(ROOT . '../config/services.yaml')) {
-            $config = Yaml::parseFile(ROOT . '../config/services.yaml');
+        if (file_exists($_ENV['DOCUMENT_ROOT'] . '/../config/services.yaml')) {
+            /** @var YamlConfig */
+            $config = Yaml::parseFile($_ENV['DOCUMENT_ROOT'] . '/../config/services.yaml');
             $this->excludePaths = $config['excludes'] ?? [];
             $this->givenArgs = $config['services'] ?? [];
         }

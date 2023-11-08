@@ -6,17 +6,17 @@ class Service
 {
     private ?object $instance = null;
     /**
-     * @var array<string, mixed> $givenArgs
+     * @var array<string, mixed>
      */
     private array $givenArgs = [];
     /**
      * @var array<array{
      *   dependecy?: string,
      *   value?: mixed
-     * } $args
+     * }>
      */
     private array $args = [];
-    private static Container $container;
+    private static ?Container $container = null;
 
     public function __construct(
         private string $class,
@@ -41,7 +41,7 @@ class Service
      * @param array<array{
      *   dependecy?: string,
      *   value?: mixed
-     * } $args
+     * }> $args
      */
     public function setArgs(array $args): void
     {
@@ -53,8 +53,12 @@ class Service
         $this->instance = $instance;
     }
 
-    public function instanciate(): void
+    private function instanciate(): void
     {
+        if (!self::$container) {
+            throw new \Exception('Container not set');
+        }
+
         $args = [];
 
         foreach ($this->getDependencies() as $varName => $dependencyType) {
@@ -77,6 +81,7 @@ class Service
         if (!empty($args)) {
             $this->setArgs($args);
         }
+
         $this->instance = new ($this->class)(...$this->args);
     }
 
@@ -94,7 +99,7 @@ class Service
     }
 
     /**
-     * @return String[]
+     * @return string[]
      */
     public function getDependencies(): array
     {
@@ -129,7 +134,6 @@ class Service
     {
         return $this->instance ? true : false;
     }
-
 
     /**
      * @return array{

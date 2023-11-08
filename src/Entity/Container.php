@@ -2,12 +2,10 @@
 
 namespace Aatis\Core\Entity;
 
-use Aatis\Core\Entity\Service;
-
 class Container
 {
     /**
-     * @var array<string, Service> $services
+     * @var array<string, Service>
      */
     private array $services = [];
 
@@ -18,7 +16,7 @@ class Container
 
     public function get(string $class): object
     {
-        return $class === self::class ? $this : $this->services[$class]->getInstance();
+        return self::class === $class ? $this : $this->services[$class]->getInstance();
     }
 
     public function has(string $class): bool
@@ -26,7 +24,7 @@ class Container
         return isset($this->services[$class]);
     }
 
-    public function set(string $class, object $service): void
+    public function set(string $class, Service $service): void
     {
         $this->services[$class] = $service;
     }

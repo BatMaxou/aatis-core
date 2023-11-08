@@ -6,7 +6,7 @@ use Aatis\Core\Entity\Container;
 
 abstract class AbstractController
 {
-    protected $container;
+    protected Container $container;
 
     public function __construct(Container $container)
     {

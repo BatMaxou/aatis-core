@@ -11,7 +11,7 @@ class Connection
 
     private static ?\PDO $connection = null;
 
-    public static function connect()
+    public static function connect(): \PDO
     {
         if (!self::$connection) {
             try {
@@ -25,7 +25,7 @@ class Connection
         return self::$connection;
     }
 
-    public static function disconnect()
+    public static function disconnect(): void
     {
         self::$connection = null;
     }

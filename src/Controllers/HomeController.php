@@ -3,7 +3,6 @@
 namespace Aatis\Core\Controllers;
 
 use Aatis\Core\Entity\Container;
-use Aatis\Core\Controllers\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -12,8 +11,8 @@ class HomeController extends AbstractController
         parent::__construct($container);
     }
 
-    public function home()
+    public function home(): void
     {
-        require_once(ROOT . '../views/home.php');
+        require_once $_ENV['DOCUMENT_ROOT'] . '/../views/home.php';
     }
 }
