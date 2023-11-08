@@ -3,3 +3,7 @@
 .env.local
 docker-compose.override.yaml
 ### < Basics
+
+### > Lint
+.php-cs-fixer.cache
+### < Lint
