@@ -13,6 +13,6 @@ class HomeController extends AbstractController
 
     public function home(): void
     {
-        require_once $_ENV['DOCUMENT_ROOT'] . '/../views/home.php';
+        require_once $_ENV['DOCUMENT_ROOT'].'/../views/home.php';
     }
 }

@@ -10,14 +10,14 @@ class Service
      */
     private array $givenArgs = [];
     /**
-     * @var array<array{
-     *   dependecy?: string,
-     *   value?: mixed
-     * }>
+     * @var mixed[]
      */
     private array $args = [];
     private static ?Container $container = null;
 
+    /**
+     * @param class-string $class
+     */
     public function __construct(
         private string $class,
     ) {
@@ -38,10 +38,7 @@ class Service
     }
 
     /**
-     * @param array<array{
-     *   dependecy?: string,
-     *   value?: mixed
-     * }> $args
+     * @param mixed[] $args
      */
     public function setArgs(array $args): void
     {
@@ -95,7 +92,12 @@ class Service
             $this->instanciate();
         }
 
-        return $this->instance;
+        /**
+         * @var object $instance
+         */
+        $instance = $this->instance;
+
+        return $instance;
     }
 
     /**
@@ -137,12 +139,8 @@ class Service
 
     /**
      * @return array{
-     *  name: string,
-     *  class: string,
-     *  args: array<array{
-     *      dependecy?: string,
-     *      value?: mixed
-     *  }>
+     *  class: class-string,
+     *  args: mixed[]
      * }
      */
     public function toArray(): array

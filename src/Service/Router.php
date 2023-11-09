@@ -10,7 +10,7 @@ class Router
     {
     }
 
-    public function redirect()
+    public function redirect(): void
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
         $uri = $this->parseExplodeUrl($uri);

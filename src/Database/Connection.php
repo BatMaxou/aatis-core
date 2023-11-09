@@ -15,10 +15,10 @@ class Connection
     {
         if (!self::$connection) {
             try {
-                self::$connection = new \PDO('mysql:host=' . self::HOST . ';dbname=' . self::DBNAME, self::USER, self::PASS);
+                self::$connection = new \PDO('mysql:host='.self::HOST.';dbname='.self::DBNAME, self::USER, self::PASS);
                 self::$connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             } catch (\PDOException $e) {
-                dd('Echec de connexion' . $e->getMessage());
+                dd('Echec de connexion'.$e->getMessage());
             }
         }
 

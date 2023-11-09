@@ -14,7 +14,7 @@ class Kernel
             'debug' => true,
         ];
 
-        $container = (new ContainerBuilder($ctx, $_ENV['DOCUMENT_ROOT'] . '/../src'))->build();
+        $container = (new ContainerBuilder($ctx, $_ENV['DOCUMENT_ROOT'].'/../src'))->build();
 
         /**
          * @var Router $router
