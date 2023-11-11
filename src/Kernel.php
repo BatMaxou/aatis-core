@@ -3,13 +3,23 @@
 namespace Aatis\Core;
 
 use Aatis\Core\Service\Router;
+use Aatis\Core\Service\ContainerBuilder;
 
 class Kernel
 {
-    public function handle()
+    public function handle(): void
     {
-        $router = new Router();
-        // Container builder job
+        $ctx = [
+            'env' => 'dev',
+        ];
+
+        $container = (new ContainerBuilder($ctx, $_ENV['DOCUMENT_ROOT'].'/../src'))->build();
+
+        /**
+         * @var Router $router
+         */
+        $router = $container->get('Aatis\Core\Service\Router');
+
         $router->redirect();
     }
 }
