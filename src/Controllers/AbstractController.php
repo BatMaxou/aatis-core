@@ -2,7 +2,7 @@
 
 namespace Aatis\Core\Controllers;
 
-use Aatis\Core\Entity\Container;
+use Aatis\DependencyInjection\Entity\Container;
 
 abstract class AbstractController
 {

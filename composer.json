@@ -14,8 +14,7 @@
         }
     },
     "require": {
-        "symfony/yaml": "^6.3",
-        "psrphp/psr11": "^1.0"
+        "aatis/dependency-injection": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^6.3",

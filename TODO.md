@@ -1,16 +1,8 @@
 # TODO
 
-## Dependencies Injection
+## Kernel
 
-- add a random parameter with yaml services file 
-
-## Exception
-
-- create exceptions
-
-## Psr4 Interface
-
-- import
+- transform Kernel to package
 
 ## Routing
 
