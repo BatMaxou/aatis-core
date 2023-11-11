@@ -4,8 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "052359e9ecbaf2ab229fdaf8b1332062",
+    "content-hash": "844dfb8731bdc4108de3c292ee409afc",
     "packages": [
+        {
+            "name": "aatis/dependency-injection",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BatMaxou/aatis-DI.git",
+                "reference": "411d9c0cfdd59b5821e8e0fe57747e87ab20c298"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-DI/zipball/411d9c0cfdd59b5821e8e0fe57747e87ab20c298",
+                "reference": "411d9c0cfdd59b5821e8e0fe57747e87ab20c298",
+                "shasum": ""
+            },
+            "require": {
+                "psrphp/psr11": "^1.0",
+                "symfony/yaml": "^6.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aatis\\DependencyInjection\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Maxime Batista",
+                    "email": "maximebatista.lycee@gmail.com"
+                }
+            ],
+            "description": "Dependency Injection of Aatis",
+            "support": {
+                "issues": "https://github.com/BatMaxou/aatis-DI/issues",
+                "source": "https://github.com/BatMaxou/aatis-DI/tree/1.0.0"
+            },
+            "time": "2023-11-11T19:53:52+00:00"
+        },
         {
             "name": "psr/container",
             "version": "2.0.2",

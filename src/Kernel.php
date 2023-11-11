@@ -3,7 +3,7 @@
 namespace Aatis\Core;
 
 use Aatis\Core\Service\Router;
-use Aatis\Core\Service\ContainerBuilder;
+use Aatis\DependencyInjection\Service\ContainerBuilder;
 
 class Kernel
 {
