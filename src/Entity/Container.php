@@ -2,7 +2,10 @@
 
 namespace Aatis\Core\Entity;
 
-class Container
+use Psr\Container\ContainerInterface;
+use Aatis\Core\Exception\ServiceNotFoundException;
+
+class Container implements ContainerInterface
 {
     /**
      * @var array<string, Service>
@@ -16,6 +19,10 @@ class Container
 
     public function get(string $class): object
     {
+        if (!isset($this->services[$class])) {
+            throw new ServiceNotFoundException('Service not found');
+        }
+
         return self::class === $class ? $this : $this->services[$class]->getInstance();
     }
 
