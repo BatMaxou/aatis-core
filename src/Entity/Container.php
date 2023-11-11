@@ -19,11 +19,15 @@ class Container implements ContainerInterface
 
     public function get(string $class): object
     {
+        if (self::class === $class) {
+            return $this;
+        }
+
         if (!isset($this->services[$class])) {
             throw new ServiceNotFoundException('Service not found');
         }
 
-        return self::class === $class ? $this : $this->services[$class]->getInstance();
+        return $this->services[$class]->getInstance();
     }
 
     public function has(string $class): bool
