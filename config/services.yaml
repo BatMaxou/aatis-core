@@ -5,6 +5,9 @@ excludes:
 
 services:
 # Aatis\Core\Service\Router:
+#   environment:
+#     - dev
+#     - prod
 #   arguments:
 #     number: 2
 #     ch: 'string'

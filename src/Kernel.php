@@ -11,7 +11,6 @@ class Kernel
     {
         $ctx = [
             'env' => 'dev',
-            'debug' => true,
         ];
 
         $container = (new ContainerBuilder($ctx, $_ENV['DOCUMENT_ROOT'].'/../src'))->build();

@@ -7,11 +7,13 @@ use Aatis\Core\Entity\Container;
 use Symfony\Component\Yaml\Yaml;
 
 /**
+ * @phpstan-type ServiceParams array<string, array{
+ *  arguments?: array<mixed>,
+ *  environment?: array<string>
+ * }>
  * @phpstan-type YamlConfig array{
  *  excludes?: array<int, string>,
- *  services?: array<string, array{
- *      arguments?: array<mixed>
- *  }>
+ *  services?: ServiceParams,
  * }
  * @phpstan-type ComposerJsonConfig array{
  *  autoload: array{
@@ -25,19 +27,13 @@ class ContainerBuilder
      * @var array<int, string>
      */
     private array $excludePaths = [];
-    /**
-     * @var array<string, array{
-     *      arguments?: array<mixed>
-     *  }>
-     * }
-     */
-    private array $givenArgs = [];
+    /** @var ServiceParams */
+    private array $givenParams = [];
     private Container $container;
 
     /**
      * @param array{
-     *  env: string,
-     *  debug: bool,
+     *  env: string
      * } $ctx
      */
     public function __construct(
@@ -97,8 +93,18 @@ class ContainerBuilder
             return;
         }
         $service = new Service($namespace);
-        if (isset($this->givenArgs[$namespace]) && isset($this->givenArgs[$namespace]['arguments'])) {
-            $service->setGivenArgs($this->givenArgs[$namespace]['arguments']);
+
+        if (isset($this->givenParams[$namespace])) {
+            if (
+                isset($this->givenParams[$namespace]['environment'])
+                && !in_array($this->ctx['env'], $this->givenParams[$namespace]['environment'])
+            ) {
+                return;
+            }
+
+            if (isset($this->givenParams[$namespace]['arguments'])) {
+                $service->setGivenArgs($this->givenParams[$namespace]['arguments']);
+            }
         }
         $this->container->set($namespace, $service);
     }
@@ -127,7 +133,7 @@ class ContainerBuilder
             /** @var YamlConfig */
             $config = Yaml::parseFile($_ENV['DOCUMENT_ROOT'].'/../config/services.yaml');
             $this->excludePaths = $config['excludes'] ?? [];
-            $this->givenArgs = $config['services'] ?? [];
+            $this->givenParams = $config['services'] ?? [];
         }
     }
 }
