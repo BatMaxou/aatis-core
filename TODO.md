@@ -1,9 +1,37 @@
 # TODO
 
+## Routing
+
+- refacto: do a fully fonctionnal
+
+## EnvReader
+
+- todo
+
+## ErrorHandler && Swagger
+
+- todo
+
+## Logger && EventDispatcher
+
+- todo
+
 ## Kernel
 
 - transform Kernel to package
 
-## Routing
+## Console
 
-- refacto: do a fully fonctionnal
+- todo
+
+## ORM
+
+- todo
+
+## Fixtures
+
+- to translate
+
+## ApiCaller
+
+- todo
