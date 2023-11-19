@@ -2,63 +2,119 @@
 
 namespace Aatis\Core\Service;
 
-use Aatis\Core\Controllers\HomeController;
+use Aatis\Core\Entity\Route;
+use Aatis\Core\Controllers\AatisController;
+use Aatis\DependencyInjection\Entity\Container;
 
 class Router
 {
-    public function __construct(private readonly HomeController $homeController)
+    /**
+     * @var Route[]
+     */
+    private array $routes = [];
+
+    public function __construct(private readonly Container $container, private readonly AatisController $baseController)
     {
+        $controllerServices = $this->container->getByTag('controller');
+        foreach ($controllerServices as $controllerService) {
+            $this->extractRoutes($controllerService->getClass());
+        }
     }
 
     public function redirect(): void
     {
-        $uri = explode('/', $_SERVER['REQUEST_URI']);
-        $uri = $this->parseExplodeUrl($uri);
+        $explodedUri = $this->explodeUri($_SERVER['REQUEST_URI']);
+        $routeInfos = $this->findRoute($explodedUri);
 
-        if (isset($uri[1]) && !empty($uri[1])) {
-            $controller = $uri[1];
-            $controllerFile = dirname(__DIR__).'/src/controllers/'.ucfirst($controller).'Controller.php';
+        if ($routeInfos) {
+            $route = $routeInfos['route'];
+            $params = $routeInfos['params'];
 
-            if (file_exists($controllerFile)) {
-                require_once $controllerFile;
-                $controller = new (ucfirst($controller).'Controller')();
+            $namespace = $route->getController();
+            if (!$namespace) {
+                $this->baseController->problem();
 
-                $action = $uri[2] ?? false;
-
-                if ($action) {
-                    if (method_exists($controller::class, $action)) {
-                        isset($uri[3]) ? $controller->$action($uri[3]) : $controller->$action();
-                    } elseif (intval($action) && method_exists($controller::class, 'view')) {
-                        $controller->view($action);
-                    } else {
-                        header('HTTP/1.0 404 Not Found');
-                        require_once dirname(__DIR__).'/views/errors/404.php';
-                    }
-                } elseif (method_exists($controller::class, 'all')) {
-                    $controller->all();
-                } else {
-                    header('HTTP/1.0 404 Not Found');
-                    require_once dirname(__DIR__).'/views/errors/404.php';
-                }
-            } else {
-                header('HTTP/1.0 404 Not Found');
-                require_once dirname(__DIR__).'/views/errors/404.php';
+                return;
             }
+
+            $controller = $this->container->get($namespace);
+            $controller->{$route->getMethodName()}(...$params);
+        } elseif (empty($this->routes)) {
+            $this->baseController->home();
         } else {
-            $this->homeController->home();
+            header('HTTP/1.0 404 Not Found');
+            require_once $_ENV['DOCUMENT_ROOT'] . '/../views/errors/404.php';
         }
     }
 
-    private function parseExplodeUrl(array $explode): array
+    /**
+     * @param class-string $controller
+     */
+    private function extractRoutes(string $controller): void
     {
-        return array_map(fn ($element) => $this->parseUrlElement($element), $explode);
+        $reflection = new \ReflectionClass($controller);
+        $methods = $reflection->getMethods();
+
+        foreach ($methods as $method) {
+            $attributes = $method->getAttributes(Route::class);
+
+            if (empty($attributes)) {
+                continue;
+            }
+
+            foreach ($attributes as $attribute) {
+                $this->routes[] = (new Route(...$attribute->getArguments()))
+                    ->setController($controller)
+                    ->setMethodName($method->getName());
+            }
+        }
     }
 
-    private function parseUrlElement(string $element): string
+    /**
+     * @return string[]
+     */
+    private function explodeUri(string $uri): array
     {
-        $element = explode('-', $element);
-        $element = array_map('ucfirst', [...$element]);
+        return explode('/', explode('?', $uri)[0] ?? '');
+    }
 
-        return lcfirst(join('', $element));
+    /**
+     * @param string[] $explodedUri
+     *
+     * @return array{
+     *  route: Route,
+     *  params: array<string, string|int>
+     * }|null
+     */
+    private function findRoute(array $explodedUri): ?array
+    {
+        $foundedRoute = null;
+        $params = [];
+
+        foreach ($this->routes as $route) {
+            $explodedPath = $this->explodeUri($route->getPath());
+
+            if (count($explodedPath) !== count($explodedUri)) {
+                continue;
+            }
+
+            for ($i = 0; $i < count($explodedPath); ++$i) {
+                if (preg_match('/^{.*}$/', $explodedPath[$i])) {
+                    $params[substr($explodedPath[$i], 1, -1)] = $explodedUri[$i];
+                    continue;
+                }
+
+                if ($explodedPath[$i] !== $explodedUri[$i]) {
+                    continue 2;
+                }
+            }
+
+            $foundedRoute = $route;
+        }
+
+        return $foundedRoute ? [
+            'route' => $foundedRoute,
+            'params' => $params,
+        ] : null;
     }
 }

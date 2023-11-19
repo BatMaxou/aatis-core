@@ -1,4 +1,4 @@
-<?php $title = 'Error '.$errorTag; ?>
+<?php $title = 'Hello Aatis ?'; ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -6,8 +6,9 @@
 <?php require_once $_ENV['DOCUMENT_ROOT'].'/../views/includes/header.php'; ?>
 
 <body>
-    <h1>Error :</h1>
-    <p><?php echo $errorDescription; ?></p>
+    <section id="hello">
+        <h1><?php echo $title; ?></h1>
+    </section>
 </body>
 
 </html>

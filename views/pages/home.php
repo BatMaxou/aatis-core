@@ -1,4 +1,4 @@
-<?php $title = 'Hello Aatis ?'; ?>
+<?php $title = 'Home'; ?>
 
 <!DOCTYPE html>
 <html lang="fr">

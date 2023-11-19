@@ -6,9 +6,7 @@
 <?php require_once $_ENV['DOCUMENT_ROOT'].'/../views/includes/header.php'; ?>
 
 <body>
-    <?php require_once $_ENV['DOCUMENT_ROOT'].'/../views/includes/navbar.php'; ?>
-    <h2><?php echo $title; ?></h2>
-
+    <h1><?php echo $title; ?></h1>
 </body>
 
 </html>
