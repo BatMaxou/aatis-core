@@ -29,16 +29,23 @@ class Router
         if ($routeInfos) {
             $route = $routeInfos['route'];
             $params = $routeInfos['params'];
-            $controller = $this->container->get($route->getController());
+
+            $namespace = $route->getController();
+            if (!$namespace) {
+                $this->baseController->problem();
+
+                return;
+            }
+
+            $controller = $this->container->get($namespace);
             $controller->{$route->getMethodName()}(...$params);
         } elseif (empty($this->routes)) {
             $this->baseController->home();
         } else {
             header('HTTP/1.0 404 Not Found');
-            require_once $_ENV['DOCUMENT_ROOT'] . '/../errors/404.php';
+            require_once $_ENV['DOCUMENT_ROOT'] . '/../views/errors/404.php';
         }
     }
-
 
     /**
      * @param class-string $controller
@@ -63,14 +70,17 @@ class Router
         }
     }
 
+    /**
+     * @return string[]
+     */
     private function explodeUri(string $uri): array
     {
-        return explode('/', explode('?', $uri)[0] ?? []);
+        return explode('/', explode('?', $uri)[0] ?? '');
     }
 
     /**
      * @param string[] $explodedUri
-     * 
+     *
      * @return array{
      *  route: Route,
      *  params: array<string, string|int>
@@ -88,7 +98,7 @@ class Router
                 continue;
             }
 
-            for ($i = 0; $i < count($explodedPath); $i++) {
+            for ($i = 0; $i < count($explodedPath); ++$i) {
                 if (preg_match('/^{.*}$/', $explodedPath[$i])) {
                     $params[substr($explodedPath[$i], 1, -1)] = $explodedUri[$i];
                     continue;

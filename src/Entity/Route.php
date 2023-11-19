@@ -4,7 +4,7 @@ namespace Aatis\Core\Entity;
 
 use Attribute;
 
-#[Attribute]
+#[\Attribute]
 class Route
 {
     /**
@@ -15,7 +15,7 @@ class Route
     private ?string $methodName;
 
     /**
-     * @param string[] $args
+     * @param string[] $methods
      */
     public function __construct(private string $path, private array $methods = [])
     {
@@ -26,6 +26,9 @@ class Route
         return $this->path;
     }
 
+    /**
+     * @return string[]
+     */
     public function getMethods(): array
     {
         return $this->methods;
