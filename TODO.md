@@ -1,10 +1,11 @@
 # TODO
 
+## Routing
+
+- Error when 2 routes have same path
+- Possibility to redirect / to the override route from HomeControllerInterface home function
+
 ## ViewLoader // TwigRenderer
-
-- todo
-
-## EnvReader
 
 - todo
 
@@ -12,13 +13,13 @@
 
 - todo
 
-## Logger && EventDispatcher
+## Cache
 
 - todo
 
-## Kernel
+## Logger && EventDispatcher
 
-- transform Kernel to package
+- todo
 
 ## Console
 

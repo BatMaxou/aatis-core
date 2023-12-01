@@ -1,13 +1,8 @@
-excludes:
+exclude_paths:
   - '/Kernel.php'
-  - '/Service/ContainerBuilder.php'
   - '/Entity'
 
+include_services:
+  - 'Aatis\Routing\Service\Router'
+
 services:
-# Aatis\Core\Service\Router:
-#   environment:
-#     - dev
-#     - prod
-#   arguments:
-#     number: 2
-#     ch: 'string'

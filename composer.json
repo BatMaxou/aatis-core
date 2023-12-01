@@ -10,15 +10,19 @@
     ],
     "autoload": {
         "psr-4": {
-            "Aatis\\Core\\": "src/"
+            "App\\": "src/"
         }
     },
     "require": {
-        "aatis/dependency-injection": "^1.0"
+        "aatis/dependency-injection": "^1.3",
+        "vlucas/phpdotenv": "^5.6",
+        "aatis/routing": "^0.0.0",
+        "aatis/kernel": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^6.3",
         "friendsofphp/php-cs-fixer": "^3.38",
-        "phpstan/phpstan": "^1.10"
+        "phpstan/phpstan": "^1.10",
+        "aatis/tester": "^1.0"
     }
 }

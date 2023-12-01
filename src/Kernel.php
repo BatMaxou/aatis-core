@@ -1,25 +1,13 @@
 <?php
 
-namespace Aatis\Core;
+namespace App;
 
-use Aatis\Core\Service\Router;
-use Aatis\DependencyInjection\Service\ContainerBuilder;
+use Aatis\Kernel as BaseKernel;
 
-class Kernel
+class Kernel extends BaseKernel
 {
     public function handle(): void
     {
-        $ctx = [
-            'env' => 'dev',
-        ];
-
-        $container = (new ContainerBuilder($ctx, $_ENV['DOCUMENT_ROOT'].'/../src'))->build();
-
-        /**
-         * @var Router $router
-         */
-        $router = $container->get('Aatis\Core\Service\Router');
-
-        $router->redirect();
+        parent::handle();
     }
 }

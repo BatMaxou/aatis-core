@@ -1,6 +1,6 @@
 <?php
 
-namespace Aatis\Core\Database;
+namespace App\Database;
 
 class Connection
 {

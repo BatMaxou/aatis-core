@@ -1,3 +1,3 @@
-# Aatis Core
+# Aatis Skeleton
 
 TODO
