@@ -4,5 +4,10 @@ exclude_paths:
 
 include_services:
   - 'Aatis\Routing\Service\Router'
+  - 'Aatis\Tester\Service\Writer'
+  - 'Aatis\TemplateRenderer\Service\TemplateRenderer'
 
 services:
+  Aatis\Tester\Service\Writer:
+    arguments:
+      defaultMessage: "Hello World ! "

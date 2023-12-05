@@ -1,9 +1,12 @@
-<?php $title = 'Home'; ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php require_once $_ENV['DOCUMENT_ROOT'].'/../views/includes/header.php'; ?>
+<?php $renderer->render(
+    $templateFolderPath.'/includes/header.tpl.php',
+    [
+        'title' => $title,
+    ]
+); ?>
 
 <body>
     <section id="home">
