@@ -5,29 +5,43 @@ namespace App\Controller;
 use Aatis\Routing\Entity\Route;
 use Aatis\Routing\Controller\AbstractHomeController;
 use Aatis\DependencyInjection\Interface\ContainerInterface;
+use Aatis\TemplateRenderer\Interface\TemplateRendererInterface;
+use Aatis\Tester\Interface\WriterInterface;
 
 class AatisController extends AbstractHomeController
 {
-    public function __construct(ContainerInterface $container)
-    {
-        parent::__construct($container);
+    public function __construct(
+        ContainerInterface $container,
+        TemplateRendererInterface $templateRenderer,
+        private readonly WriterInterface $writer
+    ) {
+        parent::__construct($container, $templateRenderer);
     }
 
-    #[Route('/')]
+    #[Route('/home')]
     public function home(): void
     {
-        parent::home();
+        $this->render('/pages/home.tpl.php', [
+            'title' => 'Home',
+        ]);
+
+        $this->writer->write();
     }
 
     #[Route('/hello')]
     public function hello(): void
     {
-        require_once $_ENV['DOCUMENT_ROOT'].'/../views/pages/hello.php';
+        $this->render('/pages/hello.tpl.php', [
+            'title' => 'Hello Aatis ?',
+        ]);
     }
 
     #[Route('/hello/{name}')]
     public function helloName(string $name): void
     {
-        require_once $_ENV['DOCUMENT_ROOT'].'/../views/pages/helloName.php';
+        $this->render('/pages/helloName.tpl.php', [
+            'title' => 'Hello '.$name.' !',
+            'name' => $name,
+        ]);
     }
 }

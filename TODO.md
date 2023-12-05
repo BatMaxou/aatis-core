@@ -1,23 +1,23 @@
 # TODO
 
-## Routing
+## Devops
 
-- Error when 2 routes have same path
-- Possibility to redirect / to the override route from HomeControllerInterface home function
+- CI
+- handle web/php image
 
-## ViewLoader // TwigRenderer
+## TemplateRenderer
 
-- todo
+- twig renderer 
 
 ## ErrorHandler && Swagger
 
 - todo
 
-## Cache
+## Logger && EventDispatcher
 
 - todo
 
-## Logger && EventDispatcher
+## Cache
 
 - todo
 
