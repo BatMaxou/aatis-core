@@ -10,21 +10,14 @@ services:
     networks:
       - aatis_core
 
-  php:
+  app:
     build:
-      context: ./.boing/docker/php
+      context: .
+      dockerfile: .boing/docker/app/aatis/Dockerfile
+      args:
+        PHP_VERSION: "8.2"
     volumes:
       - .:/srv
-    networks:
-      - aatis_core
-
-  web:
-    depends_on:
-      - php
-    build:
-      context: ./.boing/docker/nginx/aatis
-    volumes:
-      - ./public:/srv/public
     networks:
       - aatis_core
 

@@ -7,3 +7,8 @@ docker-compose.override.yaml
 ### > Lint
 .php-cs-fixer.cache
 ### < Lint
+
+### > Supervisor
+supervisord.log
+supervisord.pid
+### < Supervisor
