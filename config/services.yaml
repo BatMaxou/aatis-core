@@ -11,9 +11,15 @@ services:
   Aatis\Tester\Service\Writer:
     arguments:
       defaultMessage: "Hello World !"
+
+  Aatis\Routing\Service\Router:
+    arguments:
+      notFoundErrorVars:
+        code: 404
+        message: "Page not found !"
   
   Aatis\TemplateRenderer\Service\TemplateRenderer:
     arguments:
       extraRenderers:
-        - 'App\Test\ExtraRenderer'
-        - 'App\Test\ZebiRenderer'
+        - 'Aatis\Tester\Service\TemplateRenderer\ExtraRenderer'
+        - 'Aatis\Tester\Service\TemplateRenderer\ZebiRenderer'

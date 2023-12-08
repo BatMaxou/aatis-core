@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aatis/dependency-injection",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BatMaxou/aatis-DI.git",
-                "reference": "c85734980d96d53e982515313c307ef6155657ec"
+                "reference": "4c78643f732fcd3cb200d82b1112cbaca94fbcae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-DI/zipball/c85734980d96d53e982515313c307ef6155657ec",
-                "reference": "c85734980d96d53e982515313c307ef6155657ec",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-DI/zipball/4c78643f732fcd3cb200d82b1112cbaca94fbcae",
+                "reference": "4c78643f732fcd3cb200d82b1112cbaca94fbcae",
                 "shasum": ""
             },
             "require": {
@@ -40,9 +40,9 @@
             "description": "Dependency Injection of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-DI/issues",
-                "source": "https://github.com/BatMaxou/aatis-DI/tree/1.4.3"
+                "source": "https://github.com/BatMaxou/aatis-DI/tree/1.4.4"
             },
-            "time": "2023-12-08T08:31:49+00:00"
+            "time": "2023-12-08T12:03:07+00:00"
         },
         {
             "name": "aatis/kernel",
@@ -939,17 +939,20 @@
     "packages-dev": [
         {
             "name": "aatis/tester",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BatMaxou/aatis-tester.git",
-                "reference": "525207963965d9d7be4154cd1624f10fecc3b589"
+                "reference": "125fa0de7ab862e0ec90e0cce41205ee2ed9d86e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-tester/zipball/525207963965d9d7be4154cd1624f10fecc3b589",
-                "reference": "525207963965d9d7be4154cd1624f10fecc3b589",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-tester/zipball/125fa0de7ab862e0ec90e0cce41205ee2ed9d86e",
+                "reference": "125fa0de7ab862e0ec90e0cce41205ee2ed9d86e",
                 "shasum": ""
+            },
+            "require": {
+                "aatis/template-renderer": "^1.0"
             },
             "type": "library",
             "autoload": {
@@ -967,9 +970,9 @@
             "description": "Test library of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-tester/issues",
-                "source": "https://github.com/BatMaxou/aatis-tester/tree/1.0.0"
+                "source": "https://github.com/BatMaxou/aatis-tester/tree/1.1.0"
             },
-            "time": "2023-12-01T09:51:36+00:00"
+            "time": "2023-12-08T14:42:08+00:00"
         },
         {
             "name": "composer/pcre",
@@ -1284,16 +1287,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.47",
+            "version": "1.10.48",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "84dbb33b520ea28b6cf5676a3941f4bae1c1ff39"
+                "reference": "087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/84dbb33b520ea28b6cf5676a3941f4bae1c1ff39",
-                "reference": "84dbb33b520ea28b6cf5676a3941f4bae1c1ff39",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6",
+                "reference": "087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6",
                 "shasum": ""
             },
             "require": {
@@ -1342,7 +1345,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-01T15:19:17+00:00"
+            "time": "2023-12-08T14:34:28+00:00"
         },
         {
             "name": "psr/event-dispatcher",
