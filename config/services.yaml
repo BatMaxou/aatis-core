@@ -10,4 +10,10 @@ include_services:
 services:
   Aatis\Tester\Service\Writer:
     arguments:
-      defaultMessage: "Hello World ! "
+      defaultMessage: "Hello World !"
+  
+  Aatis\TemplateRenderer\Service\TemplateRenderer:
+    arguments:
+      extraRenderers:
+        - 'App\Test\ExtraRenderer'
+        - 'App\Test\ZebiRenderer'

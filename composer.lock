@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a57f0ecfe0c7f43c17ea3ba977f4e35",
+    "content-hash": "049d676171baae7fa3d8a485a3bd1154",
     "packages": [
         {
             "name": "aatis/dependency-injection",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BatMaxou/aatis-DI.git",
-                "reference": "ce15b25a2ffa110fa5ee03b517c394f7a3bfd790"
+                "reference": "c85734980d96d53e982515313c307ef6155657ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-DI/zipball/ce15b25a2ffa110fa5ee03b517c394f7a3bfd790",
-                "reference": "ce15b25a2ffa110fa5ee03b517c394f7a3bfd790",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-DI/zipball/c85734980d96d53e982515313c307ef6155657ec",
+                "reference": "c85734980d96d53e982515313c307ef6155657ec",
                 "shasum": ""
             },
             "require": {
@@ -40,9 +40,9 @@
             "description": "Dependency Injection of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-DI/issues",
-                "source": "https://github.com/BatMaxou/aatis-DI/tree/1.4.2"
+                "source": "https://github.com/BatMaxou/aatis-DI/tree/1.4.3"
             },
-            "time": "2023-12-04T19:41:23+00:00"
+            "time": "2023-12-08T08:31:49+00:00"
         },
         {
             "name": "aatis/kernel",
@@ -127,17 +127,26 @@
         },
         {
             "name": "aatis/template-renderer",
-            "version": "0.0.0",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BatMaxou/aatis-TR.git",
-                "reference": "58d3d34ed1ade2c5e6f3cfb28f0894a59ca0ad4f"
+                "reference": "a554c1542970f9eed441d70d69a474604238e5b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-TR/zipball/58d3d34ed1ade2c5e6f3cfb28f0894a59ca0ad4f",
-                "reference": "58d3d34ed1ade2c5e6f3cfb28f0894a59ca0ad4f",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-TR/zipball/a554c1542970f9eed441d70d69a474604238e5b1",
+                "reference": "a554c1542970f9eed441d70d69a474604238e5b1",
                 "shasum": ""
+            },
+            "require": {
+                "aatis/dependency-injection": "^1.4",
+                "psrphp/psr11": "^1.0",
+                "twig/twig": "^3.8"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.40",
+                "phpstan/phpstan": "^1.10"
             },
             "type": "library",
             "autoload": {
@@ -155,9 +164,9 @@
             "description": "Template renderer of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-TR/issues",
-                "source": "https://github.com/BatMaxou/aatis-TR/tree/0.0.0"
+                "source": "https://github.com/BatMaxou/aatis-TR/tree/1.0.0"
             },
-            "time": "2023-12-04T23:01:45+00:00"
+            "time": "2023-12-08T11:53:06+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -769,6 +778,78 @@
                 }
             ],
             "time": "2023-11-06T11:00:25+00:00"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v3.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "9d15f0ac07f44dc4217883ec6ae02fd555c6f71d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9d15f0ac07f44dc4217883ec6ae02fd555c6f71d",
+                "reference": "9d15f0ac07f44dc4217883ec6ae02fd555c6f71d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-ctype": "^1.8",
+                "symfony/polyfill-mbstring": "^1.3",
+                "symfony/polyfill-php80": "^1.22"
+            },
+            "require-dev": {
+                "psr/container": "^1.0|^2.0",
+                "symfony/phpunit-bridge": "^5.4.9|^6.3|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Twig Team",
+                    "role": "Contributors"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "https://twig.symfony.com",
+            "keywords": [
+                "templating"
+            ],
+            "support": {
+                "issues": "https://github.com/twigphp/Twig/issues",
+                "source": "https://github.com/twigphp/Twig/tree/v3.8.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-11-21T18:54:41+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

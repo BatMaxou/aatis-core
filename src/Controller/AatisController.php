@@ -40,8 +40,32 @@ class AatisController extends AbstractHomeController
     public function helloName(string $name): void
     {
         $this->render('/pages/helloName.tpl.php', [
-            'title' => 'Hello '.$name.' !',
+            'title' => 'Hello ' . $name . ' !',
             'name' => $name,
+        ]);
+    }
+
+    #[Route('/twig')]
+    public function twig(): void
+    {
+        $this->render('/twig/twig.html.twig', [
+            'title' => 'Twig',
+        ]);
+    }
+
+    #[Route('/extra')]
+    public function extra(): void
+    {
+        $this->render('/extra/home.extra.php', [
+            'title' => 'Extra renderer',
+        ]);
+    }
+
+    #[Route('/zebi')]
+    public function zebi(): void
+    {
+        $this->render('/extra/home.zebi', [
+            'title' => 'Zebi renderer',
         ]);
     }
 }
