@@ -4,7 +4,7 @@
 <html lang="fr">
 
 <?php $renderer->render(
-    $templateFolderPath.'/includes/header.tpl.php',
+    $templatesFolderPath.'/includes/header.tpl.php',
     [
         'title' => $title,
     ]

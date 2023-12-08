@@ -1,13 +1,10 @@
 # TODO
 
-## Devops
+## Routing
 
-- CI
-- handle web/php image
-
-## TemplateRenderer
-
-- twig renderer 
+- upgrade dependencies
+- doc
+- 1.0.0
 
 ## ErrorHandler && Swagger
 
