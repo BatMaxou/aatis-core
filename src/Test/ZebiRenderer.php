@@ -2,7 +2,6 @@
 
 namespace App\Test;
 
-use App\Test\ExtraTemplateFileExtension;
 use Aatis\TemplateRenderer\Service\PhpRenderer;
 
 class ZebiRenderer extends PhpRenderer
