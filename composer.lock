@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a57f0ecfe0c7f43c17ea3ba977f4e35",
+    "content-hash": "049d676171baae7fa3d8a485a3bd1154",
     "packages": [
         {
             "name": "aatis/dependency-injection",

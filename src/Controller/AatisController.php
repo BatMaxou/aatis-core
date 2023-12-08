@@ -40,7 +40,7 @@ class AatisController extends AbstractHomeController
     public function helloName(string $name): void
     {
         $this->render('/pages/helloName.tpl.php', [
-            'title' => 'Hello ' . $name . ' !',
+            'title' => 'Hello '.$name.' !',
             'name' => $name,
         ]);
     }
