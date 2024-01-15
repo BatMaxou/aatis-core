@@ -1,16 +1,10 @@
 # TODO
 
-## Routing
-
-- upgrade dependencies
-- doc
-- 1.0.0
-
 ## ErrorHandler && Swagger
 
 - todo
 
-## Logger && EventDispatcher
+## EventDispatcher
 
 - todo
 

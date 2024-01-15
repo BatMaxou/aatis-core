@@ -6,6 +6,8 @@ include_services:
   - 'Aatis\Routing\Service\Router'
   - 'Aatis\Tester\Service\Writer'
   - 'Aatis\TemplateRenderer\Service\TemplateRenderer'
+  - 'Aatis\FileManager\Service\FileManager'
+  - 'Aatis\Logger\Service\Logger'
 
 services:
   Aatis\Tester\Service\Writer:
