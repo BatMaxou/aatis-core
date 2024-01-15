@@ -16,7 +16,7 @@
     "require": {
         "aatis/kernel": "^1.0",
         "aatis/file-manager": "^0.0.0",
-        "aatis/logger": "^0.0.0"
+        "aatis/logger": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^6.3",

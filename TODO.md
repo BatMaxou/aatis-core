@@ -1,9 +1,5 @@
 # TODO
 
-## Logger
-
-- doc
-
 ## ErrorHandler && Swagger
 
 - todo

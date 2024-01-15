@@ -43,7 +43,7 @@ class AatisController extends AbstractHomeController
     public function helloName(string $name): void
     {
         $this->render('/pages/helloName.tpl.php', [
-            'title' => 'Hello ' . $name . ' !',
+            'title' => 'Hello '.$name.' !',
             'name' => $name,
         ]);
     }
@@ -95,7 +95,7 @@ class AatisController extends AbstractHomeController
         $this->logger->emergency('Logger is {test.context} !', ['test.context' => $specific]);
 
         $this->render('/pages/helloName.tpl.php', [
-            'title' => 'Hello logger ' . $specific . ' !',
+            'title' => 'Hello logger '.$specific.' !',
             'name' => 'Logger',
         ]);
     }
