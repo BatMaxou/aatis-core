@@ -1,9 +1,5 @@
 # TODO
 
-## ErrorHandler && Swagger
-
-- todo
-
 ## EventDispatcher
 
 - todo

@@ -2,21 +2,22 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
+use Aatis\Logger\Enum\LogLevel;
 use Aatis\Routing\Entity\Route;
 use Aatis\Routing\Controller\AbstractHomeController;
 use Aatis\DependencyInjection\Interface\ContainerInterface;
-use Aatis\Logger\Enum\LogLevel;
+use Aatis\DependencyInjection\Exception\FileNotFoundException;
 use Aatis\TemplateRenderer\Interface\TemplateRendererInterface;
-use Aatis\Tester\Interface\WriterInterface;
-use Psr\Log\LoggerInterface;
+use Aatis\Tester\Common\Interface\WriterInterface;
 
 class AatisController extends AbstractHomeController
 {
     public function __construct(
         ContainerInterface $container,
         TemplateRendererInterface $templateRenderer,
-        private readonly WriterInterface $writer,
         private readonly LoggerInterface $logger,
+        private readonly WriterInterface $writer,
     ) {
         parent::__construct($container, $templateRenderer);
     }
@@ -29,6 +30,12 @@ class AatisController extends AbstractHomeController
         ]);
 
         $this->writer->write();
+    }
+
+    #[Route('/container')]
+    public function container(): void
+    {
+        dd($this->container);
     }
 
     #[Route('/hello')]
@@ -98,5 +105,17 @@ class AatisController extends AbstractHomeController
             'title' => 'Hello logger '.$specific.' !',
             'name' => 'Logger',
         ]);
+    }
+
+    #[Route('/exception')]
+    public function loggerError(): void
+    {
+        throw new FileNotFoundException('Test exception', 30);
+    }
+
+    #[Route('/error')]
+    public function loggerException(): void
+    {
+        trigger_error('Test error', E_USER_ERROR);
     }
 }

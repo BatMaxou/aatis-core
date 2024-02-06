@@ -4,24 +4,31 @@ exclude_paths:
 
 include_services:
   - 'Aatis\Routing\Service\Router'
-  - 'Aatis\Tester\Service\Writer'
+  - 'Aatis\Tester\Common\Service\Writer'
   - 'Aatis\TemplateRenderer\Service\TemplateRenderer'
   - 'Aatis\FileManager\Service\FileManager'
   - 'Aatis\Logger\Service\Logger'
+  - 'Aatis\ErrorHandler\Service\ErrorCodeBag'
+  - 'Aatis\ErrorHandler\Service\ExceptionCodeBag'
 
 services:
-  Aatis\Tester\Service\Writer:
+  Aatis\Tester\Common\Service\Writer:
     arguments:
-      defaultMessage: "Hello World !"
+      defaultMessage: 'Hello World !'
 
   Aatis\Routing\Service\Router:
     arguments:
       notFoundErrorVars:
         code: 404
-        message: "Page not found !"
+        message: 'Page not found !'
   
   Aatis\TemplateRenderer\Service\TemplateRenderer:
     arguments:
       extraRenderers:
         - 'Aatis\Tester\Service\TemplateRenderer\ExtraRenderer'
         - 'Aatis\Tester\Service\TemplateRenderer\ZebiRenderer'
+  
+  Aatis\ErrorHandler\Service\ExceptionCodeBag:
+    arguments:
+      extraExceptionCodeEnums:
+        - 'Aatis\Tester\ErrorHandler\ExtraExceptionCodeEnum'
