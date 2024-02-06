@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ee2b8a44422a5c1871f8956e1e351f2",
+    "content-hash": "fbd8851aa075f6a5d042666fa7fd5a52",
     "packages": [
         {
             "name": "aatis/dependency-injection",
@@ -45,17 +45,55 @@
             "time": "2023-12-08T12:03:07+00:00"
         },
         {
-            "name": "aatis/file-manager",
-            "version": "0.0.0",
+            "name": "aatis/error-handler",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/BatMaxou/aatis-FM.git",
-                "reference": "e4afead23231741fbcab0849ae527b5b690ce86b"
+                "url": "https://github.com/BatMaxou/aatis-EH.git",
+                "reference": "a3697357fc3b392a158787eaea96a0927e2e209e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-FM/zipball/e4afead23231741fbcab0849ae527b5b690ce86b",
-                "reference": "e4afead23231741fbcab0849ae527b5b690ce86b",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-EH/zipball/a3697357fc3b392a158787eaea96a0927e2e209e",
+                "reference": "a3697357fc3b392a158787eaea96a0927e2e209e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "psr/log": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aatis\\ErrorHandler\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Maxime Batista",
+                    "email": "maximebatista.lycee@gmail.com"
+                }
+            ],
+            "description": "Error handler of Aatis",
+            "support": {
+                "issues": "https://github.com/BatMaxou/aatis-EH/issues",
+                "source": "https://github.com/BatMaxou/aatis-EH/tree/1.0.0"
+            },
+            "time": "2024-02-06T07:50:07+00:00"
+        },
+        {
+            "name": "aatis/file-manager",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BatMaxou/aatis-FM.git",
+                "reference": "211c94d4a9b60e2a588f3a68c29fa448eb9c0566"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-FM/zipball/211c94d4a9b60e2a588f3a68c29fa448eb9c0566",
+                "reference": "211c94d4a9b60e2a588f3a68c29fa448eb9c0566",
                 "shasum": ""
             },
             "type": "library",
@@ -74,27 +112,31 @@
             "description": "File manager of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-FM/issues",
-                "source": "https://github.com/BatMaxou/aatis-FM/tree/0.0.0"
+                "source": "https://github.com/BatMaxou/aatis-FM/tree/0.0.1"
             },
-            "time": "2023-12-10T16:46:13+00:00"
+            "time": "2023-12-17T15:09:14+00:00"
         },
         {
             "name": "aatis/kernel",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BatMaxou/aatis-kernel.git",
-                "reference": "64309d4ec4441e3270f7dc9e84965fec77fab284"
+                "reference": "51c29127375cdbff2ecd9f912791031410393b42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-kernel/zipball/64309d4ec4441e3270f7dc9e84965fec77fab284",
-                "reference": "64309d4ec4441e3270f7dc9e84965fec77fab284",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-kernel/zipball/51c29127375cdbff2ecd9f912791031410393b42",
+                "reference": "51c29127375cdbff2ecd9f912791031410393b42",
                 "shasum": ""
             },
             "require": {
-                "aatis/dependency-injection": "^1.3",
+                "aatis/dependency-injection": "^1.4",
+                "aatis/error-handler": "^1.0",
+                "aatis/file-manager": "^0.0.1",
+                "aatis/logger": "^1.0",
                 "aatis/routing": "^1.0",
+                "aatis/template-renderer": "^1.0",
                 "vlucas/phpdotenv": "^5.6"
             },
             "type": "library",
@@ -113,22 +155,22 @@
             "description": "Kernel of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-kernel/issues",
-                "source": "https://github.com/BatMaxou/aatis-kernel/tree/1.1.1"
+                "source": "https://github.com/BatMaxou/aatis-kernel/tree/1.2.0"
             },
-            "time": "2023-12-09T14:24:14+00:00"
+            "time": "2024-02-06T08:02:00+00:00"
         },
         {
             "name": "aatis/logger",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BatMaxou/aatis-logger.git",
-                "reference": "776fe569ddf9bee37e6ae89a092f3cb930922f42"
+                "reference": "b15f9e30344ad866d025f108dd4e1b04e3019a70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-logger/zipball/776fe569ddf9bee37e6ae89a092f3cb930922f42",
-                "reference": "776fe569ddf9bee37e6ae89a092f3cb930922f42",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-logger/zipball/b15f9e30344ad866d025f108dd4e1b04e3019a70",
+                "reference": "b15f9e30344ad866d025f108dd4e1b04e3019a70",
                 "shasum": ""
             },
             "require": {
@@ -151,9 +193,9 @@
             "description": "Logger of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-logger/issues",
-                "source": "https://github.com/BatMaxou/aatis-logger/tree/1.0.0"
+                "source": "https://github.com/BatMaxou/aatis-logger/tree/1.0.1"
             },
-            "time": "2024-01-14T21:44:39+00:00"
+            "time": "2024-02-05T14:38:50+00:00"
         },
         {
             "name": "aatis/routing",
@@ -827,16 +869,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v6.4.0",
+            "version": "v6.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "4f9237a1bb42455d609e6687d2613dde5b41a587"
+                "reference": "d75715985f0f94f978e3a8fa42533e10db921b90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/4f9237a1bb42455d609e6687d2613dde5b41a587",
-                "reference": "4f9237a1bb42455d609e6687d2613dde5b41a587",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/d75715985f0f94f978e3a8fa42533e10db921b90",
+                "reference": "d75715985f0f94f978e3a8fa42533e10db921b90",
                 "shasum": ""
             },
             "require": {
@@ -879,7 +921,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v6.4.0"
+                "source": "https://github.com/symfony/yaml/tree/v6.4.3"
             },
             "funding": [
                 {
@@ -895,7 +937,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-06T11:00:25+00:00"
+            "time": "2024-01-23T14:51:35+00:00"
         },
         {
             "name": "twig/twig",
@@ -1057,16 +1099,16 @@
     "packages-dev": [
         {
             "name": "aatis/tester",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BatMaxou/aatis-tester.git",
-                "reference": "125fa0de7ab862e0ec90e0cce41205ee2ed9d86e"
+                "reference": "d83b4d1f9752ddb86e2c89ad19260b91533dd844"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-tester/zipball/125fa0de7ab862e0ec90e0cce41205ee2ed9d86e",
-                "reference": "125fa0de7ab862e0ec90e0cce41205ee2ed9d86e",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-tester/zipball/d83b4d1f9752ddb86e2c89ad19260b91533dd844",
+                "reference": "d83b4d1f9752ddb86e2c89ad19260b91533dd844",
                 "shasum": ""
             },
             "require": {
@@ -1088,9 +1130,9 @@
             "description": "Test library of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-tester/issues",
-                "source": "https://github.com/BatMaxou/aatis-tester/tree/1.1.0"
+                "source": "https://github.com/BatMaxou/aatis-tester/tree/1.2.0"
             },
-            "time": "2023-12-08T14:42:08+00:00"
+            "time": "2024-01-26T14:37:47+00:00"
         },
         {
             "name": "composer/pcre",
@@ -1312,16 +1354,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.47.0",
+            "version": "v3.49.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "184dd992fe49169a18300dba4435212db55220f7"
+                "reference": "8742f7aa6f72a399688b65e4f58992c2d4681fc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/184dd992fe49169a18300dba4435212db55220f7",
-                "reference": "184dd992fe49169a18300dba4435212db55220f7",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/8742f7aa6f72a399688b65e4f58992c2d4681fc2",
+                "reference": "8742f7aa6f72a399688b65e4f58992c2d4681fc2",
                 "shasum": ""
             },
             "require": {
@@ -1391,7 +1433,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.47.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.49.0"
             },
             "funding": [
                 {
@@ -1399,20 +1441,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-15T15:35:57+00:00"
+            "time": "2024-02-02T00:41:40+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.56",
+            "version": "1.10.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "27816a01aea996191ee14d010f325434c0ee76fa"
+                "reference": "1627b1d03446904aaa77593f370c5201d2ecc34e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/27816a01aea996191ee14d010f325434c0ee76fa",
-                "reference": "27816a01aea996191ee14d010f325434c0ee76fa",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1627b1d03446904aaa77593f370c5201d2ecc34e",
+                "reference": "1627b1d03446904aaa77593f370c5201d2ecc34e",
                 "shasum": ""
             },
             "require": {
@@ -1461,7 +1503,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-15T10:43:00+00:00"
+            "time": "2024-01-24T11:51:34+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -1582,16 +1624,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v7.0.2",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "f8587c4cdc5acad67af71c37db34ef03af91e59c"
+                "reference": "c5010d50f1ee4b25cfa0201d9915cf1b14071456"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/f8587c4cdc5acad67af71c37db34ef03af91e59c",
-                "reference": "f8587c4cdc5acad67af71c37db34ef03af91e59c",
+                "url": "https://api.github.com/repos/symfony/console/zipball/c5010d50f1ee4b25cfa0201d9915cf1b14071456",
+                "reference": "c5010d50f1ee4b25cfa0201d9915cf1b14071456",
                 "shasum": ""
             },
             "require": {
@@ -1655,7 +1697,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.0.2"
+                "source": "https://github.com/symfony/console/tree/v7.0.3"
             },
             "funding": [
                 {
@@ -1671,20 +1713,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-10T16:54:46+00:00"
+            "time": "2024-01-23T15:02:46+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v7.0.2",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "098b62ae81fdd6cbf941f355059f617db28f4f9a"
+                "reference": "834c28d533dd0636f910909d01b9ff45cc094b5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/098b62ae81fdd6cbf941f355059f617db28f4f9a",
-                "reference": "098b62ae81fdd6cbf941f355059f617db28f4f9a",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/834c28d533dd0636f910909d01b9ff45cc094b5e",
+                "reference": "834c28d533dd0636f910909d01b9ff45cc094b5e",
                 "shasum": ""
             },
             "require": {
@@ -1735,7 +1777,7 @@
             "description": "Provides tools that allow your application components to communicate with each other by dispatching events and listening to them",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/event-dispatcher/tree/v7.0.2"
+                "source": "https://github.com/symfony/event-dispatcher/tree/v7.0.3"
             },
             "funding": [
                 {
@@ -1751,7 +1793,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-27T22:24:19+00:00"
+            "time": "2024-01-23T15:02:46+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -1831,16 +1873,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v7.0.0",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "7da8ea2362a283771478c5f7729cfcb43a76b8b7"
+                "reference": "2890e3a825bc0c0558526c04499c13f83e1b6b12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/7da8ea2362a283771478c5f7729cfcb43a76b8b7",
-                "reference": "7da8ea2362a283771478c5f7729cfcb43a76b8b7",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/2890e3a825bc0c0558526c04499c13f83e1b6b12",
+                "reference": "2890e3a825bc0c0558526c04499c13f83e1b6b12",
                 "shasum": ""
             },
             "require": {
@@ -1874,7 +1916,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v7.0.0"
+                "source": "https://github.com/symfony/filesystem/tree/v7.0.3"
             },
             "funding": [
                 {
@@ -1890,7 +1932,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-27T06:33:22+00:00"
+            "time": "2024-01-23T15:02:46+00:00"
         },
         {
             "name": "symfony/finder",
@@ -2269,16 +2311,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v7.0.2",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "acd3eb5cb02382c1cb0287ba29b2908cc6ffa83a"
+                "reference": "937a195147e0c27b2759ade834169ed006d0bc74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/acd3eb5cb02382c1cb0287ba29b2908cc6ffa83a",
-                "reference": "acd3eb5cb02382c1cb0287ba29b2908cc6ffa83a",
+                "url": "https://api.github.com/repos/symfony/process/zipball/937a195147e0c27b2759ade834169ed006d0bc74",
+                "reference": "937a195147e0c27b2759ade834169ed006d0bc74",
                 "shasum": ""
             },
             "require": {
@@ -2310,7 +2352,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v7.0.2"
+                "source": "https://github.com/symfony/process/tree/v7.0.3"
             },
             "funding": [
                 {
@@ -2326,7 +2368,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-24T09:15:37+00:00"
+            "time": "2024-01-23T15:02:46+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -2412,16 +2454,16 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v7.0.0",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "7bbfa3dd564a0ce12eb4acaaa46823c740f9cb7a"
+                "reference": "983900d6fddf2b0cbaacacbbad07610854bd8112"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/7bbfa3dd564a0ce12eb4acaaa46823c740f9cb7a",
-                "reference": "7bbfa3dd564a0ce12eb4acaaa46823c740f9cb7a",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/983900d6fddf2b0cbaacacbbad07610854bd8112",
+                "reference": "983900d6fddf2b0cbaacacbbad07610854bd8112",
                 "shasum": ""
             },
             "require": {
@@ -2454,7 +2496,7 @@
             "description": "Provides a way to profile code",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/stopwatch/tree/v7.0.0"
+                "source": "https://github.com/symfony/stopwatch/tree/v7.0.3"
             },
             "funding": [
                 {
@@ -2470,20 +2512,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-05T13:06:06+00:00"
+            "time": "2024-01-23T15:02:46+00:00"
         },
         {
             "name": "symfony/string",
-            "version": "v7.0.2",
+            "version": "v7.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "cc78f14f91f5e53b42044d0620961c48028ff9f5"
+                "reference": "524aac4a280b90a4420d8d6a040718d0586505ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/cc78f14f91f5e53b42044d0620961c48028ff9f5",
-                "reference": "cc78f14f91f5e53b42044d0620961c48028ff9f5",
+                "url": "https://api.github.com/repos/symfony/string/zipball/524aac4a280b90a4420d8d6a040718d0586505ac",
+                "reference": "524aac4a280b90a4420d8d6a040718d0586505ac",
                 "shasum": ""
             },
             "require": {
@@ -2540,7 +2582,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v7.0.2"
+                "source": "https://github.com/symfony/string/tree/v7.0.3"
             },
             "funding": [
                 {
@@ -2556,20 +2598,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-10T16:54:46+00:00"
+            "time": "2024-01-29T15:41:16+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v6.4.2",
+            "version": "v6.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "68d6573ec98715ddcae5a0a85bee3c1c27a4c33f"
+                "reference": "0435a08f69125535336177c29d56af3abc1f69da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/68d6573ec98715ddcae5a0a85bee3c1c27a4c33f",
-                "reference": "68d6573ec98715ddcae5a0a85bee3c1c27a4c33f",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/0435a08f69125535336177c29d56af3abc1f69da",
+                "reference": "0435a08f69125535336177c29d56af3abc1f69da",
                 "shasum": ""
             },
             "require": {
@@ -2625,7 +2667,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v6.4.2"
+                "source": "https://github.com/symfony/var-dumper/tree/v6.4.3"
             },
             "funding": [
                 {
@@ -2641,7 +2683,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-28T19:16:56+00:00"
+            "time": "2024-01-23T14:53:30+00:00"
         }
     ],
     "aliases": [],
@@ -2649,7 +2691,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^8.2"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
