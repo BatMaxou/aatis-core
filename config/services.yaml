@@ -10,6 +10,10 @@ include_services:
   - 'Aatis\Logger\Service\Logger'
   - 'Aatis\ErrorHandler\Service\ErrorCodeBag'
   - 'Aatis\ErrorHandler\Service\ExceptionCodeBag'
+  - 'Aatis\EventDispatcher\Service\ListenerProvider'
+  - 'Aatis\EventDispatcher\Service\EventDispatcher'
+  - 'Aatis\Tester\EventDispatcher\Listener\CustomListener'
+  - 'Aatis\Tester\EventDispatcher\Subscriber\CustomSubscriber'
 
 services:
   Aatis\Tester\Common\Service\Writer:
@@ -32,3 +36,7 @@ services:
     arguments:
       extraExceptionCodeEnums:
         - 'Aatis\Tester\ErrorHandler\ExtraExceptionCodeEnum'
+
+  Aatis\Tester\EventDispatcher\Listener\CustomListener:
+    tags:
+      - 'event-listener'

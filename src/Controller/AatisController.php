@@ -5,11 +5,14 @@ namespace App\Controller;
 use Psr\Log\LoggerInterface;
 use Aatis\Logger\Enum\LogLevel;
 use Aatis\Routing\Entity\Route;
+use Aatis\EventDispatcher\Service\EventDispatcher;
+use Aatis\Tester\Common\Interface\WriterInterface;
+use Aatis\Tester\EventDispatcher\Event\CustomEvent;
 use Aatis\Routing\Controller\AbstractHomeController;
 use Aatis\DependencyInjection\Interface\ContainerInterface;
+use Aatis\Tester\EventDispatcher\Event\CustomStoppableEvent;
 use Aatis\DependencyInjection\Exception\FileNotFoundException;
 use Aatis\TemplateRenderer\Interface\TemplateRendererInterface;
-use Aatis\Tester\Common\Interface\WriterInterface;
 
 class AatisController extends AbstractHomeController
 {
@@ -18,6 +21,7 @@ class AatisController extends AbstractHomeController
         TemplateRendererInterface $templateRenderer,
         private readonly LoggerInterface $logger,
         private readonly WriterInterface $writer,
+        private readonly EventDispatcher $eventDispatcher,
     ) {
         parent::__construct($container, $templateRenderer);
     }
@@ -117,5 +121,28 @@ class AatisController extends AbstractHomeController
     public function loggerException(): void
     {
         trigger_error('Test error', E_USER_ERROR);
+    }
+
+    #[Route('/permission')]
+    public function permission(): void
+    {
+        exec('ls -al ../', $outputLs);
+        exec('whoami', $outputUser);
+
+        dd($outputLs, $outputUser);
+    }
+
+    #[Route('/event')]
+    public function event(): void
+    {
+        $event = new CustomEvent('This is a message from Custom Event !');
+        $this->eventDispatcher->dispatch($event);
+    }
+
+    #[Route('/stoppable-event')]
+    public function stoppableEvent(): void
+    {
+        $event = new CustomStoppableEvent('This is a message from Stoppable Event !');
+        $this->eventDispatcher->dispatch($event);
     }
 }
